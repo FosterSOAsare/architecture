@@ -21,8 +21,8 @@ export function Press() {
           </h3>
         </motion.div>
 
-        {/* Press Logos - Larger Size */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 md:gap-16 items-center">
+        {/* Press Mentions - Premium Text Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3  lg:grid-cols-6 border-t border-l border-gray-100">
           {PRESS_MENTIONS.map((press, index) => (
             <motion.div
               key={press.id}
@@ -30,18 +30,11 @@ export function Press() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-50 hover:opacity-100"
+              className="flex items-center hover:cursor-pointer justify-center h-32 border-r border-b border-gray-100 p-8 group hover:bg-gray-50 transition-colors duration-300 cursor-default"
             >
-              <img 
-                src={press.logo} 
-                alt={press.name}
-                className="h-16 md:h-20 w-auto object-contain"
-                onError={(e) => {
-                  // Fallback to text if logo fails to load
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.parentElement!.innerHTML = `<span class="text-lg md:text-xl font-medium text-gray-600">${press.name}</span>`;
-                }}
-              />
+              <span className="text-xl font-serif italic text-gray-400 group-hover:text-secondary transition-colors duration-500 text-center leading-tight">
+                {press.name}
+              </span>
             </motion.div>
           ))}
         </div>

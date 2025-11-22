@@ -61,38 +61,64 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/10 mb-12"></div>
+        <div className="border-t border-white/10 mb-16"></div>
 
-        {/* Bottom Section */}
+        {/* Bottom Section: Newsletter & Socials */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
+          
+          {/* Newsletter */}
+          <div>
+            <h4 className="text-lg font-medium mb-6">Stay Updated</h4>
+            <form className="flex gap-0 border-b border-white/30 pb-2 max-w-md group focus-within:border-white transition-colors">
+              <input 
+                type="email" 
+                placeholder="Email Address" 
+                className="bg-transparent border-none outline-none text-white placeholder:text-gray-500 w-full py-2"
+              />
+              <button type="button" className="text-sm uppercase tracking-widest hover:text-secondary transition-colors">
+                Subscribe
+              </button>
+            </form>
+          </div>
+
+          {/* Socials & Copyright */}
+          <div className="flex flex-col md:items-end justify-between gap-8">
+            <div className="flex gap-6">
+              <Link href="#" className="p-2 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300">
+                <Instagram size={18} />
+              </Link>
+              <Link href="#" className="p-2 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300">
+                <Linkedin size={18} />
+              </Link>
+              <Link href="#" className="p-2 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300">
+                <Twitter size={18} />
+              </Link>
+            </div>
+            
+            {/* Technical Footer Info */}
+            <div className="flex flex-col md:items-end gap-2 text-xs font-mono text-gray-600">
+              <div className="flex items-center gap-4">
+                <span>LON 51.5074° N, 0.1278° W</span>
+                <span>/// SYSTEM.ONLINE</span>
+              </div>
+              <div suppressHydrationWarning>
+                © {new Date().getFullYear()} Architecture Studio. All rights reserved.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Large Typographic Logo & End Marker */}
         <motion.div 
-          className="flex flex-col md:flex-row justify-between items-center gap-8"
+          className="border-t border-white/10 pt-8 flex justify-between items-end"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
         >
-          
-          {/* Logo */}
-          <div className="text-2xl font-medium tracking-tighter">ARC.</div>
-
-          {/* Copyright */}
-          <div className="text-sm text-gray-500">
-            © {new Date().getFullYear()} Architecture Studio. All rights reserved.
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex gap-6">
-            <Link href="#" className="hover:text-secondary transition-colors">
-              <Instagram size={20} />
-            </Link>
-            <Link href="#" className="hover:text-secondary transition-colors">
-              <Linkedin size={20} />
-            </Link>
-            <Link href="#" className="hover:text-secondary transition-colors">
-              <Twitter size={20} />
-            </Link>
-          </div>
-
+          <h1 className="text-[12vw] leading-none font-bold tracking-tighter text-white/5 select-none">
+            ARCHITECTURE.
+          </h1>
+         
         </motion.div>
 
       </div>

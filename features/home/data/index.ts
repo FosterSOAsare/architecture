@@ -134,24 +134,28 @@ export const AWARDS = [
     title: "RIBA International Prize",
     year: "2024",
     project: "The Glass Pavilion",
+    organization:"Test Org"
   },
   {
     id: 2,
     title: "Architizer A+ Award",
     year: "2023",
     project: "Brutalist Villa",
+    organization:"Test Org"
   },
   {
     id: 3,
     title: "World Architecture Festival",
     year: "2023",
     project: "Nordic Maritime Museum",
+    organization:"Test Org"
   },
   {
     id: 4,
     title: "Dezeen Awards",
     year: "2022",
     project: "Aesop Store Seoul",
+    organization:"Test Org"
   },
 ];
 

@@ -1,48 +1,80 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowUpRight, Plus } from "lucide-react";
 import { AWARDS } from "../data";
 
 export function Awards() {
   return (
-    <section className="py-24 md:py-32 bg-black text-white">
+    <section className="py-24 bg-gray-50 text-black">
       <div className="container mx-auto px-6 md:px-12">
         
-        {/* Header */}
-        <div className="mb-16 md:mb-20 text-center">
-          <h2 className="text-xs font-mono text-gray-500 uppercase tracking-[0.2em] mb-6">
-            Recognition
-          </h2>
-          <h3 className="italic text-4xl md:text-6xl font-serif font-light leading-[1.1]">
-            Awards & Honors
-          </h3>
-        </div>
+        {/* Section Header */}
+        <motion.div 
+          className="mb-16 md:mb-24 flex flex-col md:flex-row justify-between items-end"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div>
+            <div className="flex items-center gap-4 mb-4 text-xs font-mono uppercase tracking-widest text-gray-400">
+              <span>(04)</span>
+              <div className="w-12 h-[1px] bg-gray-300"></div>
+              <span>Recognition</span>
+            </div>
+            <h3 className="text-3xl md:text-5xl font-serif font-light">
+              Award <span className="italic text-gray-400">Winning</span>
+            </h3>
+          </div>
+          <div className="hidden md:block text-right max-w-xs text-sm text-gray-500 font-light">
+            Celebrating excellence in design and our commitment to pushing architectural boundaries.
+          </div>
+        </motion.div>
 
-        {/* Awards Grid - Card Style */}
-        <div className="grid grid-cols-1  md:grid-cols-2 gap-8">
+        {/* Awards List - Premium Table Layout */}
+        <div className="flex flex-col border-t border-gray-200">
           {AWARDS.map((award, index) => (
             <motion.div
               key={award.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0,  }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 md:p-10 hover:bg-white/10 hover:border-amber-500/50 transition-all duration-300 group"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group flex flex-col md:flex-row md:items-center justify-between py-8 md:py-10 border-b border-gray-200 hover:bg-white transition-colors duration-300 cursor-default relative"
             >
-              {/* Year Badge */}
-              <div className="inline-block px-4 py-2 bg-amber-500/20 border border-amber-500/50 text-amber-400 text-sm font-mono uppercase tracking-widest mb-6">
-                {award.year}
+              {/* Hover Reveal Background (Optional subtle effect) */}
+              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+
+              {/* Year & Organization */}
+              <div className="flex items-center gap-8 md:w-1/4 mb-4 md:mb-0">
+                <span className="text-sm font-mono text-gray-400 group-hover:text-black transition-colors">
+                  {award.year}
+                </span>
+                <span className="text-xs font-medium uppercase tracking-widest text-gray-500 hidden md:block">
+                  {award.organization}
+                </span>
               </div>
 
-              {/* Award Title */}
-              <h4 className="text-2xl md:text-3xl font-serif font-light mb-4 leading-tight group-hover:text-amber-400 transition-colors">
-                {award.title}
-              </h4>
+              {/* Title */}
+              <div className="md:w-1/2">
+                <h4 className="text-2xl md:text-3xl font-serif font-light group-hover:translate-x-4 transition-transform duration-500 ease-out">
+                  {award.title}
+                </h4>
+                <span className="md:hidden text-xs font-medium uppercase tracking-widest text-gray-500 mt-2 block">
+                  {award.organization}
+                </span>
+              </div>
 
-              {/* Project */}
-              <p className="text-gray-400 text-sm uppercase tracking-widest">
-                {award.project}
-              </p>
+              {/* Project & Action */}
+              <div className="flex items-center justify-between md:justify-end md:w-1/4 gap-4 mt-4 md:mt-0">
+                <span className="text-sm text-gray-500 group-hover:text-black transition-colors">
+                  {award.project}
+                </span>
+                <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                  <ArrowUpRight size={16} />
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>

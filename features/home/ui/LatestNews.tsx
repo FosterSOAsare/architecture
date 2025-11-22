@@ -10,25 +10,38 @@ export function LatestNews() {
     <section className="py-24 md:py-32 bg-white text-black border-t border-gray-100">
       <div className="container mx-auto px-6 md:px-12">
         
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 md:mb-20 gap-8">
+        {/* Section Header */}
+        <motion.div 
+          className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <div>
-            <h2 className="text-xs font-mono text-gray-400 uppercase tracking-[0.2em] mb-6">
-              Latest News
-            </h2>
-            <h3 className="text-4xl italic md:text-6xl font-serif font-light leading-[1.1] max-w-2xl">
-              What we've been up to
+            <div className="flex items-center gap-4 mb-4 text-xs font-mono uppercase tracking-widest text-gray-400">
+              <span>(06)</span>
+              <div className="w-12 h-[1px] bg-gray-300"></div>
+              <span className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                Journal
+              </span>
+            </div>
+            <h3 className="text-3xl md:text-5xl font-serif font-light">
+              Latest <span className="italic text-gray-400">News</span>
             </h3>
           </div>
-          <Link 
-            href="/news" 
-            className="hidden md:flex items-center gap-2 text-sm uppercase tracking-widest border-b border-black pb-1 hover:text-secondary hover:border-secondary transition-colors"
-          >
-            All News <ArrowUpRight size={16} />
-          </Link>
-        </div>
+          <div className="hidden md:block pb-2">
+            <Link 
+              href="/news" 
+              className="group flex items-center gap-2 text-sm uppercase tracking-widest hover:text-gray-600 transition-colors"
+            >
+              Read All <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Link>
+          </div>
+        </motion.div>
 
-        {/* News Grid */}
+        {/* News Grid - Editorial Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
           {LATEST_NEWS.map((item, index) => (
             <motion.article
@@ -37,10 +50,14 @@ export function LatestNews() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group cursor-pointer"
+              className={`group cursor-pointer flex flex-col ${
+                index === 0 ? "md:col-span-2 md:row-span-2" : "md:col-span-1"
+              }`}
             >
               {/* Image */}
-              <div className="overflow-hidden mb-6 aspect-[4/3] bg-gray-100 border border-gray-200">
+              <div className={`overflow-hidden mb-6 bg-gray-100 border border-gray-200 ${
+                index === 0 ? "aspect-[3/2]" : "aspect-[4/3]"
+              }`}>
                 <img 
                   src={item.image} 
                   alt={item.title} 
@@ -49,23 +66,37 @@ export function LatestNews() {
               </div>
 
               {/* Content */}
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-4 flex-1">
                 {/* Meta */}
-                <div className="flex justify-between items-center text-xs font-mono uppercase tracking-widest">
-                  <span className="px-3 py-1 bg-secondary/10 border border-secondary/20 text-secondary font-medium">
+                <div className="flex justify-between items-center text-xs font-mono uppercase tracking-widest border-b border-gray-100 pb-3">
+                  <span className="text-secondary font-medium">
                     {item.category}
                   </span>
                   <span className="text-gray-400">{item.date}</span>
                 </div>
 
                 {/* Title */}
-                <h4 className="text-xl md:text-2xl font-medium leading-tight group-hover:text-secondary transition-colors">
+                <h4 className={`font-medium leading-tight group-hover:text-secondary transition-colors ${
+                  index === 0 ? "text-3xl md:text-4xl font-serif" : "text-xl md:text-2xl"
+                }`}>
                   {item.title}
                 </h4>
 
+                {/* Description (Only for featured item if available, or generic text) */}
+                {index === 0 && (
+                  <div className="text-gray-500 text-base leading-relaxed mt-4 space-y-4">
+                    <p>
+                      We are thrilled to announce that our studio has been recognized for its commitment to sustainable innovation and community-driven design. This award reflects our ongoing dedication to creating spaces that not only serve their function but also enhance the well-being of those who inhabit them.
+                    </p>
+                    <p>
+                      It is a testament to the hard work of our entire team and our visionary clients who dare to dream big. As we look to the future, we remain focused on pushing the boundaries of what is possible in modern architecture, ensuring every project leaves a lasting positive impact on the built environment.
+                    </p>
+                  </div>
+                )}
+
                 {/* Read More Link */}
-                <div className="flex items-center gap-2 text-sm font-medium text-gray-600 group-hover:text-secondary transition-colors">
-                  Read More <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <div className="mt-auto pt-4 flex items-center gap-2 text-sm font-medium text-gray-900 group-hover:text-secondary transition-colors">
+                  Read Article <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </div>
             </motion.article>

@@ -7,7 +7,6 @@ import { Awards } from "@/features/home/ui/Awards";
 import { Process } from "@/features/home/ui/Process";
 import { LatestNews } from "@/features/home/ui/LatestNews";
 import { Press } from "@/features/home/ui/Press";
-import { CTASection } from "@/features/home/ui/CTASection";
 import { Footer } from "@/features/home/ui/Footer";
 
 export default function Home() {
@@ -22,7 +21,6 @@ export default function Home() {
       <Process />
       <LatestNews />
       <Press />
-      <CTASection />
       <Footer />
     </main>
   );
