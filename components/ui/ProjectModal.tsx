@@ -3,8 +3,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowUpRight, MapPin, Calendar, Layers } from "lucide-react";
 import { useEffect } from "react";
+import Link from "next/link";
 
-interface Project {
+export interface Project {
   id: number;
   title: string;
   location: string;
@@ -136,10 +137,13 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 </div>
 
                 <div className="mt-auto pt-8">
-                  <button className="w-full md:w-auto bg-black text-white px-8 py-4 text-xs uppercase tracking-[0.2em] hover:bg-secondary transition-colors duration-300 flex items-center justify-center gap-4 group">
+                  <Link 
+                    href={`/projects/${project.id}`}
+                    className="w-full md:w-auto bg-black text-white px-8 py-4 text-xs uppercase tracking-[0.2em] hover:bg-secondary transition-colors duration-300 flex items-center justify-center gap-4 group"
+                  >
                     View Full Project
                     <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

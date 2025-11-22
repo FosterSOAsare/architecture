@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useState, useRef } from "react";
 import { FEATURED_PROJECTS } from "../data";
-import { ProjectModal } from "./ProjectModal";
+import { ProjectModal } from "@/components/ui/ProjectModal";
 
 function ProjectCard({ project, index, onClick }: { project: typeof FEATURED_PROJECTS[0], index: number, onClick: (p: any) => void }) {
   const ref = useRef(null);

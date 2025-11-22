@@ -1,4 +1,4 @@
-import { Header } from "@/features/home/ui/Header";
+import { Navbar } from "@/features/layout/ui/Navbar";
 import { Hero } from "@/features/home/ui/Hero";
 import { FeaturedProjects } from "@/features/home/ui/FeaturedProjects";
 import { StudioPreview } from "@/features/home/ui/StudioPreview";
@@ -12,7 +12,7 @@ import { Footer } from "@/features/home/ui/Footer";
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <Header />
+      <Navbar transparentOnTop={true} />
       <Hero />
       <FeaturedProjects />
       <StudioPreview />

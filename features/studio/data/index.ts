@@ -1,0 +1,67 @@
+export const TEAM_MEMBERS = [
+  {
+    id: 1,
+    name: "Sarah Chen",
+    role: "Founding Principal",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop",
+    bio: "With over 15 years of experience, Sarah leads our vision for sustainable and innovative architecture."
+  },
+  {
+    id: 2,
+    name: "Marcus Rodriguez",
+    role: "Design Director",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop",
+    bio: "Marcus brings a unique perspective combining modernist principles with environmental consciousness."
+  },
+  {
+    id: 3,
+    name: "Yuki Tanaka",
+    role: "Senior Architect",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop",
+    bio: "Specializing in residential projects, Yuki creates spaces that harmonize with their natural surroundings."
+  },
+  {
+    id: 4,
+    name: "Elena Popov",
+    role: "Project Manager",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop",
+    bio: "Elena ensures every project is delivered with precision, on time, and exceeding client expectations."
+  },
+  {
+    id: 5,
+    name: "James Mitchell",
+    role: "Sustainability Lead",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop",
+    bio: "James champions our commitment to carbon-neutral design and regenerative architecture."
+  },
+  {
+    id: 6,
+    name: "Amara Okafor",
+    role: "Interior Designer",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop",
+    bio: "Amara crafts interiors that are both functional and emotionally resonant."
+  }
+];
+
+export const STUDIO_VALUES = [
+  {
+    id: 1,
+    title: "Innovation",
+    description: "We push boundaries and challenge conventions to create architecture that defines the future."
+  },
+  {
+    id: 2,
+    title: "Sustainability",
+    description: "Every project is designed with environmental responsibility at its core."
+  },
+  {
+    id: 3,
+    title: "Collaboration",
+    description: "We believe the best work emerges from diverse perspectives working in harmony."
+  },
+  {
+    id: 4,
+    title: "Excellence",
+    description: "We are committed to the highest standards of design and execution."
+  }
+];
