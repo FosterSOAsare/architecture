@@ -50,7 +50,7 @@ export function ProjectGrid({ activeCategory }: ProjectGridProps) {
               >
                 {/* Image Container */}
                 <div className={`relative overflow-hidden mb-6 bg-gray-100 ${
-                  index % 3 === 0 ? "aspect-[21/9]" : "aspect-[4/3]"
+                  index % 3 === 0 ? "aspect-[3/4] md:aspect-[21/9]" : "aspect-[4/3]"
                 }`}>
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-700 z-10" />
                   

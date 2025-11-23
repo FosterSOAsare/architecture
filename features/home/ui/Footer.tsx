@@ -1,125 +1,192 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Instagram, Linkedin, Twitter } from "lucide-react";
 
 export function Footer() {
+  const pathname = usePathname();
+
   return (
-    <footer className="bg-black text-white pt-24 pb-12">
+    <footer className="bg-black text-white pt-32 pb-8">
       <div className="container mx-auto px-6 md:px-12">
         
-        {/* Top Section: CTA & Navigation */}
-        <div className="flex flex-col md:flex-row justify-between items-start gap-16 mb-24">
-          
-          {/* CTA */}
-          <motion.div 
-            className="max-w-xl"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter leading-none mb-8">
-              Have a project in mind?
+        {/* Top Section: Large CTA */}
+        <motion.div
+          className="mb-32"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+            <div className="text-xs font-mono uppercase tracking-widest text-gray-500 mb-8">
+              Ready to Begin?
+            </div>
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-serif font-light leading-[0.95] mb-12">
+              Let's create something <span className="italic text-gray-400">remarkable</span> together
             </h2>
             <Link 
               href="/contact" 
-              className="inline-flex items-center gap-3 text-xl md:text-2xl border-b border-white/30 pb-2 hover:text-secondary hover:border-secondary transition-colors"
+              className="inline-flex items-center gap-3 bg-white text-black px-10 py-5 text-sm uppercase tracking-[0.2em] hover:bg-gray-200 transition-all duration-300 group"
             >
-              Let's talk about it <ArrowUpRight size={24} />
+              Start a Conversation
+              <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Link>
-          </motion.div>
-
-          {/* Navigation Links */}
-          <motion.div 
-            className="flex gap-12 md:gap-24"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div>
-              <h4 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-6">Sitemap</h4>
-              <ul className="space-y-4">
-                <li><Link href="/projects" className="hover:text-secondary transition-colors">Projects</Link></li>
-                <li><Link href="/studio" className="hover:text-secondary transition-colors">Studio</Link></li>
-                <li><Link href="/news" className="hover:text-secondary transition-colors">News</Link></li>
-                <li><Link href="/contact" className="hover:text-secondary transition-colors">Contact</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-6">Connect</h4>
-              <ul className="space-y-4">
-                <li><Link href="#" className="hover:text-secondary transition-colors">Instagram</Link></li>
-                <li><Link href="#" className="hover:text-secondary transition-colors">LinkedIn</Link></li>
-                <li><Link href="#" className="hover:text-secondary transition-colors">Twitter</Link></li>
-              </ul>
-            </div>
-          </motion.div>
-
-        </div>
+          </div>
+        </motion.div>
 
         {/* Divider */}
         <div className="border-t border-white/10 mb-16"></div>
 
-        {/* Bottom Section: Newsletter & Socials */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
-          
+        {/* Middle Section: Navigation + Newsletter */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-24"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          {/* Navigation */}
+          <div>
+            <h4 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-6">Navigate</h4>
+            <ul className="space-y-3">
+              <li>
+                <Link 
+                  href="/" 
+                  className={`transition-colors ${pathname === '/' ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/projects" 
+                  className={`transition-colors ${pathname.startsWith('/projects') ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                >
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/studio" 
+                  className={`transition-colors ${pathname.startsWith('/studio') ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                >
+                  Studio
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/news" 
+                  className={`transition-colors ${pathname.startsWith('/news') ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                >
+                  News
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/contact" 
+                  className={`transition-colors ${pathname.startsWith('/contact') ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Info */}
+          <div>
+            <h4 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-6">Connect</h4>
+            <div className="space-y-3 text-gray-400">
+              <div>London, United Kingdom</div>
+              <div>Tokyo, Japan</div>
+              <div className="pt-4">
+                <a href="mailto:hello@architecture.studio" className="hover:text-white transition-colors">
+                  hello@architecture.studio
+                </a>
+              </div>
+            </div>
+          </div>
+
           {/* Newsletter */}
           <div>
-            <h4 className="text-lg font-medium mb-6">Stay Updated</h4>
-            <form className="flex gap-0 border-b border-white/30 pb-2 max-w-md group focus-within:border-white transition-colors">
+            <h4 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-6">Newsletter</h4>
+            <p className="text-sm text-gray-400 mb-6 leading-relaxed">
+              Subscribe to receive updates on our latest projects and news.
+            </p>
+            <form className="space-y-4">
               <input 
                 type="email" 
-                placeholder="Email Address" 
-                className="bg-transparent border-none outline-none text-white placeholder:text-gray-500 w-full py-2"
+                placeholder="Your email" 
+                className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-white/30 transition-colors"
               />
-              <button type="button" className="text-sm uppercase tracking-widest hover:text-secondary transition-colors">
+              <button 
+                type="button" 
+                className="w-full bg-white text-black px-4 py-3 text-xs uppercase tracking-widest hover:bg-gray-200 transition-colors"
+              >
                 Subscribe
               </button>
             </form>
           </div>
+        </motion.div>
 
-          {/* Socials & Copyright */}
-          <div className="flex flex-col md:items-end justify-between gap-8">
-            <div className="flex gap-6">
-              <Link href="#" className="p-2 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300">
-                <Instagram size={18} />
-              </Link>
-              <Link href="#" className="p-2 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300">
-                <Linkedin size={18} />
-              </Link>
-              <Link href="#" className="p-2 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300">
-                <Twitter size={18} />
-              </Link>
-            </div>
-            
-            {/* Technical Footer Info */}
-            <div className="flex flex-col md:items-end gap-2 text-xs font-mono text-gray-600">
-              <div className="flex items-center gap-4">
-                <span>LON 51.5074° N, 0.1278° W</span>
-                <span>/// SYSTEM.ONLINE</span>
-              </div>
-              <div suppressHydrationWarning>
-                © {new Date().getFullYear()} Architecture Studio. All rights reserved.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Large Typographic Logo & End Marker */}
-        <motion.div 
-          className="border-t border-white/10 pt-8 flex justify-between items-end"
+        {/* Large Typographic Text */}
+        <motion.div
+          className="mb-16"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <h1 className="text-[12vw] leading-none font-bold tracking-tighter text-white/5 select-none">
+          <h1 className="text-[12vw] md:text-[12vw] leading-none font-bold tracking-tighter text-white/5 select-none">
             ARCHITECTURE.
           </h1>
-         
         </motion.div>
+
+        {/* Divider */}
+        <div className="border-t border-white/10 mb-8"></div>
+
+        {/* Bottom Bar: Copyright + Socials */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+          
+          {/* Copyright & Info */}
+          <div className="flex flex-col md:flex-row items-center gap-4 text-xs font-mono text-gray-600">
+            <div suppressHydrationWarning>
+              © {new Date().getFullYear()} REAPER Architecture
+            </div>
+            <div className="hidden md:block w-1 h-1 bg-gray-600 rounded-full"></div>
+            <span>LON 51.5074° N, 0.1278° W</span>
+          </div>
+
+          {/* Social Icons */}
+          <div className="flex gap-4">
+            <a 
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300"
+            >
+              <Instagram size={16} />
+            </a>
+            <a 
+              href="https://linkedin.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300"
+            >
+              <Linkedin size={16} />
+            </a>
+            <a 
+              href="https://twitter.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300"
+            >
+              <Twitter size={16} />
+            </a>
+          </div>
+
+        </div>
 
       </div>
     </footer>

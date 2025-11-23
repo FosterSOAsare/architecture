@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -9,10 +10,18 @@ interface NavbarProps {
   transparentOnTop?: boolean;
 }
 
+const NAV_ITEMS = [
+  { label: "Projects", href: "/projects" },
+  { label: "Studio", href: "/studio" },
+  { label: "News", href: "/news" },
+  { label: "Contact", href: "/contact" },
+];
+
 export function Navbar({ transparentOnTop = false }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
+  const pathname = usePathname();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 50) {
@@ -45,18 +54,37 @@ export function Navbar({ transparentOnTop = false }: NavbarProps) {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-widest uppercase">
-            <Link href="/projects" className="hover:text-secondary transition-colors">
-              Projects
-            </Link>
-            <Link href="/studio" className="hover:text-secondary transition-colors">
-              Studio
-            </Link>
-            <Link href="/news" className="hover:text-secondary transition-colors">
-              News
-            </Link>
-            <Link href="/contact" className="hover:text-secondary transition-colors">
-              Contact
-            </Link>
+            {NAV_ITEMS.map((item) => {
+              const isActive = pathname.startsWith(item.href);
+              
+              return (
+                <Link 
+                  key={item.href} 
+                  href={item.href} 
+                  className="relative group py-2"
+                >
+                  <span className={`transition-colors duration-300 ${
+                    isActive ? "text-current" : "text-gray-400 group-hover:text-current"
+                  }`}>
+                    {item.label}
+                  </span>
+                  
+                  {/* Active Indicator */}
+                  {isActive && (
+                    <motion.div
+                      layoutId="navbar-active"
+                      className="absolute bottom-0 left-0 right-0 h-[1px] bg-current"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  
+                  {/* Hover Indicator (if not active) */}
+                  {!isActive && (
+                    <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-current transition-all duration-300 group-hover:w-full opacity-50" />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -80,18 +108,26 @@ export function Navbar({ transparentOnTop = false }: NavbarProps) {
         transition={{ duration: 0.3 }}
       >
         <nav className="flex flex-col items-center gap-8 text-2xl font-light tracking-widest uppercase text-black">
-          <Link href="/projects" onClick={() => setIsMobileMenuOpen(false)}>
-            Projects
-          </Link>
-          <Link href="/studio" onClick={() => setIsMobileMenuOpen(false)}>
-            Studio
-          </Link>
-          <Link href="/news" onClick={() => setIsMobileMenuOpen(false)}>
-            News
-          </Link>
-          <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-            Contact
-          </Link>
+          {NAV_ITEMS.map((item) => {
+            const isActive = pathname.startsWith(item.href);
+            
+            return (
+              <Link 
+                key={item.href} 
+                href={item.href} 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`relative ${isActive ? "font-medium" : "text-gray-500"}`}
+              >
+                {item.label}
+                {isActive && (
+                  <motion.div
+                    layoutId="mobile-nav-active"
+                    className="absolute -bottom-2 left-0 right-0 h-[1px] bg-black"
+                  />
+                )}
+              </Link>
+            );
+          })}
         </nav>
       </motion.div>
     </>

@@ -1,23 +1,11 @@
-"use client";
+import type { Metadata } from "next";
+import { ProjectsPageContent } from "@/features/projects/ui/ProjectsPageContent";
 
-import { useState } from "react";
-import { Navbar } from "@/features/layout/ui/Navbar";
-import { Footer } from "@/features/home/ui/Footer";
-import { ProjectHeader } from "@/features/projects/ui/ProjectHeader";
-import { ProjectGrid } from "@/features/projects/ui/ProjectGrid";
+export const metadata: Metadata = {
+  title: "Projects | REAPER Architecture",
+  description: "Explore our portfolio of residential, cultural, and commercial projects from around the world.",
+};
 
 export default function ProjectsPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  return (
-    <main className="min-h-screen bg-white">
-      <Navbar />
-      <ProjectHeader 
-        activeCategory={activeCategory} 
-        onCategoryChange={setActiveCategory} 
-      />
-      <ProjectGrid activeCategory={activeCategory} />
-      <Footer />
-    </main>
-  );
+  return <ProjectsPageContent />;
 }

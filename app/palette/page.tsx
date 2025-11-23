@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Style Guide | REAPER Architecture",
+  description: "Design system and style guide for REAPER Architecture, featuring typography, color palette, and component library.",
+};
 
 export default function PalettePage() {
   return (

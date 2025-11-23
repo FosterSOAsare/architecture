@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Navbar } from "@/features/layout/ui/Navbar";
 import { Hero } from "@/features/home/ui/Hero";
 import { FeaturedProjects } from "@/features/home/ui/FeaturedProjects";
@@ -8,6 +9,11 @@ import { Process } from "@/features/home/ui/Process";
 import { LatestNews } from "@/features/home/ui/LatestNews";
 import { Press } from "@/features/home/ui/Press";
 import { Footer } from "@/features/home/ui/Footer";
+
+export const metadata: Metadata = {
+  title: "REAPER Architecture | Modern Sustainable Design",
+  description: "Award-winning architecture studio based in London and Tokyo. We create timeless, sustainable spaces that elevate the human experience.",
+};
 
 export default function Home() {
   return (
