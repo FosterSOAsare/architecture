@@ -33,7 +33,7 @@ export function Navbar({ transparentOnTop = false }: NavbarProps) {
 
   // Determine styles based on state and props
   const isTransparent = transparentOnTop && !isScrolled && !isMobileMenuOpen;
-  
+
   const headerClass = isTransparent
     ? "bg-transparent text-white"
     : "bg-white/90 backdrop-blur-md text-black border-b border-gray-100";
@@ -56,28 +56,36 @@ export function Navbar({ transparentOnTop = false }: NavbarProps) {
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-widest uppercase">
             {NAV_ITEMS.map((item) => {
               const isActive = pathname.startsWith(item.href);
-              
+
               return (
-                <Link 
-                  key={item.href} 
-                  href={item.href} 
+                <Link
+                  key={item.href}
+                  href={item.href}
                   className="relative group py-2"
                 >
-                  <span className={`transition-colors duration-300 ${
-                    isActive ? "text-current" : "text-gray-400 group-hover:text-current"
-                  }`}>
+                  <span
+                    className={`transition-opacity duration-300 ${
+                      isActive
+                        ? "opacity-100"
+                        : "opacity-60 group-hover:opacity-100"
+                    }`}
+                  >
                     {item.label}
                   </span>
-                  
+
                   {/* Active Indicator */}
                   {isActive && (
                     <motion.div
                       layoutId="navbar-active"
                       className="absolute bottom-0 left-0 right-0 h-[1px] bg-current"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30,
+                      }}
                     />
                   )}
-                  
+
                   {/* Hover Indicator (if not active) */}
                   {!isActive && (
                     <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-current transition-all duration-300 group-hover:w-full opacity-50" />
@@ -91,6 +99,9 @@ export function Navbar({ transparentOnTop = false }: NavbarProps) {
           <button
             className="md:hidden z-50"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -99,6 +110,7 @@ export function Navbar({ transparentOnTop = false }: NavbarProps) {
 
       {/* Mobile Menu Overlay */}
       <motion.div
+        id="mobile-menu"
         className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center md:hidden"
         initial={{ opacity: 0, pointerEvents: "none" }}
         animate={{
@@ -106,17 +118,22 @@ export function Navbar({ transparentOnTop = false }: NavbarProps) {
           pointerEvents: isMobileMenuOpen ? "auto" : "none",
         }}
         transition={{ duration: 0.3 }}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile Menu"
       >
         <nav className="flex flex-col items-center gap-8 text-2xl font-light tracking-widest uppercase text-black">
           {NAV_ITEMS.map((item) => {
             const isActive = pathname.startsWith(item.href);
-            
+
             return (
-              <Link 
-                key={item.href} 
-                href={item.href} 
+              <Link
+                key={item.href}
+                href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`relative ${isActive ? "font-medium" : "text-gray-500"}`}
+                className={`relative ${
+                  isActive ? "font-medium" : "text-gray-600"
+                }`}
               >
                 {item.label}
                 {isActive && (

@@ -2,7 +2,14 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, MapPin, Calendar, Layers, ArrowLeft } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+  Calendar,
+  Layers,
+  ArrowLeft,
+} from "lucide-react";
 import Link from "next/link";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
@@ -14,13 +21,14 @@ interface SingleProjectPageContentProps {
   project: Project;
 }
 
-export function SingleProjectPageContent({ project }: SingleProjectPageContentProps) {
+export function SingleProjectPageContent({
+  project,
+}: SingleProjectPageContentProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, duration: 30 },
-    [Autoplay({ delay: 5000, stopOnInteraction: false })]
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 30 }, [
+    Autoplay({ delay: 5000, stopOnInteraction: false }),
+  ]);
 
   // Create 3 slides with different scaling and positioning
   const slides = [
@@ -28,19 +36,19 @@ export function SingleProjectPageContent({ project }: SingleProjectPageContentPr
       image: project.image,
       title: "Exterior View",
       imageClass: "object-cover object-center scale-100",
-      containerClass: ""
+      containerClass: "",
     },
     {
       image: project.image,
       title: "Detail Shot",
       imageClass: "object-cover object-top scale-150",
-      containerClass: ""
+      containerClass: "",
     },
     {
       image: project.image,
       title: "Context View",
       imageClass: "object-cover object-bottom scale-125",
-      containerClass: ""
+      containerClass: "",
     },
   ];
 
@@ -60,21 +68,24 @@ export function SingleProjectPageContent({ project }: SingleProjectPageContentPr
   useEffect(() => {
     if (!emblaApi) return;
     onSelect();
-    emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
   }, [emblaApi, onSelect]);
 
   return (
     <main className="min-h-screen bg-white">
       <Navbar />
-      
+
       {/* Hero Section with Embla Carousel */}
       <section className="pt-20 h-screen flex flex-col relative overflow-hidden bg-black">
         {/* Embla Carousel */}
         <div className="absolute inset-0" ref={emblaRef}>
           <div className="flex h-full">
             {slides.map((slide, index) => (
-              <div key={index} className={`relative h-full w-full flex-[0_0_100%] overflow-hidden ${slide.containerClass}`}>
+              <div
+                key={index}
+                className={`relative h-full w-full flex-[0_0_100%] overflow-hidden ${slide.containerClass}`}
+              >
                 <img
                   src={slide.image}
                   alt={`${project.title} - ${slide.title}`}
@@ -82,7 +93,7 @@ export function SingleProjectPageContent({ project }: SingleProjectPageContentPr
                 />
                 {/* Base gradient for text readability */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                
+
                 {/* Slide Label */}
                 <div className="absolute top-24 right-8 md:right-12">
                   <span className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono uppercase tracking-widest text-white">
@@ -142,7 +153,9 @@ export function SingleProjectPageContent({ project }: SingleProjectPageContentPr
                 <div
                   key={index}
                   className={`h-1 rounded-full transition-all duration-300 ${
-                    index === selectedIndex ? "bg-white w-12" : "bg-white/40 w-8"
+                    index === selectedIndex
+                      ? "bg-white w-12"
+                      : "bg-white/40 w-8"
                   }`}
                 />
               ))}
@@ -173,10 +186,12 @@ export function SingleProjectPageContent({ project }: SingleProjectPageContentPr
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="border-t border-gray-200 pt-6"
                 >
-                  <div className="flex items-center gap-2 text-xs font-mono text-gray-400 uppercase tracking-widest mb-4">
+                  <div className="flex items-center gap-2 text-xs font-mono text-gray-500 uppercase tracking-widest mb-4">
                     <MapPin size={14} /> Location
                   </div>
-                  <div className="text-2xl md:text-3xl font-light">{project.location}</div>
+                  <div className="text-2xl md:text-3xl font-light">
+                    {project.location}
+                  </div>
                 </motion.div>
 
                 <motion.div
@@ -186,10 +201,12 @@ export function SingleProjectPageContent({ project }: SingleProjectPageContentPr
                   transition={{ duration: 0.6, delay: 0.4 }}
                   className="border-t border-gray-200 pt-6"
                 >
-                  <div className="flex items-center gap-2 text-xs font-mono text-gray-400 uppercase tracking-widest mb-4">
+                  <div className="flex items-center gap-2 text-xs font-mono text-gray-500 uppercase tracking-widest mb-4">
                     <Calendar size={14} /> Year
                   </div>
-                  <div className="text-2xl md:text-3xl font-light">{project.year}</div>
+                  <div className="text-2xl md:text-3xl font-light">
+                    {project.year}
+                  </div>
                 </motion.div>
 
                 <motion.div
@@ -199,10 +216,12 @@ export function SingleProjectPageContent({ project }: SingleProjectPageContentPr
                   transition={{ duration: 0.6, delay: 0.6 }}
                   className="border-t border-gray-200 pt-6"
                 >
-                  <div className="flex items-center gap-2 text-xs font-mono text-gray-400 uppercase tracking-widest mb-4">
+                  <div className="flex items-center gap-2 text-xs font-mono text-gray-500 uppercase tracking-widest mb-4">
                     <Layers size={14} /> Size
                   </div>
-                  <div className="text-2xl md:text-3xl font-light">{project.size}</div>
+                  <div className="text-2xl md:text-3xl font-light">
+                    {project.size}
+                  </div>
                 </motion.div>
               </div>
 
@@ -214,7 +233,7 @@ export function SingleProjectPageContent({ project }: SingleProjectPageContentPr
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="lg:col-span-2"
               >
-                <h2 className="text-xs font-mono text-gray-400 uppercase tracking-widest mb-8">
+                <h2 className="text-xs font-mono text-gray-500 uppercase tracking-widest mb-8">
                   About This Project
                 </h2>
                 <div className="space-y-6">
@@ -222,14 +241,19 @@ export function SingleProjectPageContent({ project }: SingleProjectPageContentPr
                     {project.description}
                   </p>
                   <p className="text-lg md:text-xl font-light leading-relaxed text-gray-600">
-                    This project represents a unique approach to {project.category.toLowerCase()} architecture, 
-                    combining innovative design principles with sustainable practices. Located in {project.location}, 
-                    the structure seamlessly integrates with its surroundings while making a bold architectural statement.
+                    This project represents a unique approach to{" "}
+                    {project.category.toLowerCase()} architecture, combining
+                    innovative design principles with sustainable practices.
+                    Located in {project.location}, the structure seamlessly
+                    integrates with its surroundings while making a bold
+                    architectural statement.
                   </p>
                   <p className="text-base md:text-lg font-light leading-relaxed text-gray-500">
-                    Completed in {project.year}, this {project.size} development showcases our commitment to 
-                    creating spaces that are both functional and inspiring. Every detail has been carefully 
-                    considered to enhance the user experience while respecting the local context and environment.
+                    Completed in {project.year}, this {project.size} development
+                    showcases our commitment to creating spaces that are both
+                    functional and inspiring. Every detail has been carefully
+                    considered to enhance the user experience while respecting
+                    the local context and environment.
                   </p>
                 </div>
               </motion.div>

@@ -29,22 +29,40 @@ export function Hero() {
     };
   }, [emblaApi, onSelect]);
 
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
+  const scrollPrev = useCallback(
+    () => emblaApi && emblaApi.scrollPrev(),
+    [emblaApi]
+  );
+  const scrollNext = useCallback(
+    () => emblaApi && emblaApi.scrollNext(),
+    [emblaApi]
+  );
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black text-white">
       {/* Technical Corner Markers (Tiny Elements) */}
-      <div className="absolute top-8 left-8 md:top-12 md:left-12 z-20 text-white/50 pointer-events-none">
+      <div
+        className="absolute top-8 left-8 md:top-12 md:left-12 z-20 text-white/50 pointer-events-none"
+        aria-hidden="true"
+      >
         <Plus size={14} />
       </div>
-      <div className="absolute top-8 right-8 md:top-12 md:right-12 z-20 text-white/50 pointer-events-none">
+      <div
+        className="absolute top-8 right-8 md:top-12 md:right-12 z-20 text-white/50 pointer-events-none"
+        aria-hidden="true"
+      >
         <Plus size={14} />
       </div>
-      <div className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-20 text-white/50 pointer-events-none">
+      <div
+        className="absolute bottom-8 left-8 md:bottom-12 md:left-12 z-20 text-white/50 pointer-events-none"
+        aria-hidden="true"
+      >
         <Plus size={14} />
       </div>
-      <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 z-20 text-white/50 pointer-events-none">
+      <div
+        className="absolute bottom-8 right-8 md:bottom-12 md:right-12 z-20 text-white/50 pointer-events-none"
+        aria-hidden="true"
+      >
         <Plus size={14} />
       </div>
 
@@ -83,7 +101,7 @@ export function Hero() {
                   <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-medium tracking-tight text-white mb-8 leading-[0.9]">
                     {slide.title}
                   </h1>
-                  <button 
+                  <button
                     onClick={() => router.push(`/projects/${slide.projectId}`)}
                     className="group flex items-center gap-3 text-sm md:text-base tracking-widest uppercase border-b border-white/30 pb-2 hover:border-white transition-colors"
                   >
@@ -108,6 +126,8 @@ export function Hero() {
               className={`h-[2px] transition-all duration-300 ${
                 index === selectedIndex ? "w-12 bg-white" : "w-6 bg-white/30"
               }`}
+              aria-label={`Go to slide ${index + 1}`}
+              aria-current={index === selectedIndex ? "true" : "false"}
             />
           ))}
         </div>
@@ -119,28 +139,34 @@ export function Hero() {
             className="p-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white hover:text-black transition-all duration-300 group"
             aria-label="Previous slide"
           >
-            <ChevronLeft size={20} className="group-hover:-translate-x-0.5 transition-transform" />
+            <ChevronLeft
+              size={20}
+              className="group-hover:-translate-x-0.5 transition-transform"
+            />
           </button>
           <button
             onClick={scrollNext}
             className="p-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white hover:text-black transition-all duration-300 group"
             aria-label="Next slide"
           >
-            <ChevronRight size={20} className="group-hover:translate-x-0.5 transition-transform" />
+            <ChevronRight
+              size={20}
+              className="group-hover:translate-x-0.5 transition-transform"
+            />
           </button>
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/50"
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/70"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
       >
         <span className="text-[10px] uppercase tracking-widest">Scroll</span>
         <div className="w-[1px] h-12 bg-white/20 overflow-hidden">
-          <motion.div 
+          <motion.div
             className="w-full h-1/2 bg-white"
             animate={{ y: ["-100%", "200%"] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}

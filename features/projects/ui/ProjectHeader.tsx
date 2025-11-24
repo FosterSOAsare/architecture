@@ -8,7 +8,10 @@ interface ProjectHeaderProps {
   onCategoryChange: (category: string) => void;
 }
 
-export function ProjectHeader({ activeCategory, onCategoryChange }: ProjectHeaderProps) {
+export function ProjectHeader({
+  activeCategory,
+  onCategoryChange,
+}: ProjectHeaderProps) {
   return (
     <section className="pt-28 pb-16 md:pt-36 md:pb-20 bg-white text-black border-b border-gray-100">
       <div className="container mx-auto px-6 md:px-12">
@@ -20,13 +23,13 @@ export function ProjectHeader({ activeCategory, onCategoryChange }: ProjectHeade
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <div className="flex items-center gap-4 mb-6 text-xs font-mono uppercase tracking-widest text-gray-400">
+            <div className="flex items-center gap-4 mb-6 text-xs font-mono uppercase tracking-widest text-black">
               <span>(01)</span>
               <div className="w-16 h-[1px] bg-black"></div>
               <span>Portfolio</span>
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-light leading-none tracking-tight">
-              Selected <span className="italic text-gray-400">Works</span>
+              Selected <span className="italic text-black/80">Works</span>
             </h1>
           </motion.div>
 
@@ -47,12 +50,12 @@ export function ProjectHeader({ activeCategory, onCategoryChange }: ProjectHeade
                   className={`text-sm md:text-base uppercase tracking-[0.2em] transition-colors duration-300 ${
                     activeCategory === category
                       ? "text-black font-medium"
-                      : "text-gray-400 hover:text-black"
+                      : "text-gray-700 hover:text-black"
                   }`}
                 >
                   {category}
                 </span>
-                
+
                 {/* Active indicator */}
                 {activeCategory === category && (
                   <motion.div
@@ -61,7 +64,7 @@ export function ProjectHeader({ activeCategory, onCategoryChange }: ProjectHeade
                     transition={{ type: "spring", duration: 0.5, bounce: 0.2 }}
                   />
                 )}
-                
+
                 {/* Hover line animation */}
                 {activeCategory !== category && (
                   <motion.div

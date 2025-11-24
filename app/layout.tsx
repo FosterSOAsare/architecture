@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { CustomCursor } from "@/features/layout/ui/CustomCursor";
+import { AxeAccessibility } from "@/components/AxeAccessibility";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,11 +20,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "REAPER | Architecture & Design",
-  description: "A multidisciplinary architecture and design studio based in London and Tokyo.",
+  description:
+    "A multidisciplinary architecture and design studio based in London and Tokyo.",
   metadataBase: new URL("https://architecture-iota-lac.vercel.app/"),
   openGraph: {
     title: "REAPER | Architecture & Design",
-    description: "A multidisciplinary architecture and design studio based in London and Tokyo.",
+    description:
+      "A multidisciplinary architecture and design studio based in London and Tokyo.",
     url: "https://architecture-iota-lac.vercel.app",
     siteName: "REAPER",
     images: [
@@ -40,7 +43,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "REAPER | Architecture & Design",
-    description: "A multidisciplinary architecture and design studio based in London and Tokyo.",
+    description:
+      "A multidisciplinary architecture and design studio based in London and Tokyo.",
     images: ["/logo.png"],
   },
   icons: {
@@ -62,6 +66,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
+        <AxeAccessibility />
         <CustomCursor />
         <ToastContainer position="bottom-right" theme="dark" />
         {children}

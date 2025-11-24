@@ -13,35 +13,35 @@ const CATEGORIES = ["All", "Awards", "Events", "Studio", "Thoughts"];
 export function NewsPageContent() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredNews = activeCategory === "All" 
-    ? NEWS_ITEMS 
-    : NEWS_ITEMS.filter(item => item.category === activeCategory);
+  const filteredNews =
+    activeCategory === "All"
+      ? NEWS_ITEMS
+      : NEWS_ITEMS.filter((item) => item.category === activeCategory);
 
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
+
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6 md:px-12">
-          
           {/* Header */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="mb-20"
           >
-            <div className="flex items-center gap-4 mb-6 text-xs font-mono uppercase tracking-widest text-gray-400">
+            <div className="flex items-center gap-4 mb-6 text-xs font-mono uppercase tracking-widest text-black/80">
               <span className="w-2 h-2 rounded-full bg-black"></span>
-              <span>Journal & Updates</span>
+              <span className="">Journal & Updates</span>
             </div>
             <h1 className="text-6xl md:text-8xl font-serif font-light mb-8">
-              Latest <span className="italic text-gray-400">News</span>
+              Latest <span className="italic text-black/80">News</span>
             </h1>
           </motion.div>
 
           {/* Filters */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -52,12 +52,14 @@ export function NewsPageContent() {
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 className={`text-sm uppercase tracking-widest transition-colors relative pb-2 ${
-                  activeCategory === category ? "text-black" : "text-gray-400 hover:text-gray-600"
+                  activeCategory === category
+                    ? "text-black"
+                    : "text-black/80 hover:text-black"
                 }`}
               >
                 {category}
                 {activeCategory === category && (
-                  <motion.div 
+                  <motion.div
                     layoutId="activeCategory"
                     className="absolute bottom-0 left-0 w-full h-[2px] bg-black"
                   />
@@ -67,7 +69,7 @@ export function NewsPageContent() {
           </motion.div>
 
           {/* Grid */}
-          <motion.div 
+          <motion.div
             layout
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16"
           >
@@ -82,12 +84,15 @@ export function NewsPageContent() {
                   transition={{ duration: 0.4 }}
                   className="group cursor-pointer flex flex-col h-full"
                 >
-                  <Link href={`/news/${item.id}`} className="flex flex-col h-full">
+                  <Link
+                    href={`/news/${item.id}`}
+                    className="flex flex-col h-full"
+                  >
                     {/* Image */}
                     <div className="overflow-hidden mb-6 bg-gray-100 aspect-[4/3] relative">
-                      <img 
-                        src={item.image} 
-                        alt={item.title} 
+                      <img
+                        src={item.image}
+                        alt={item.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-mono uppercase tracking-widest">
@@ -97,18 +102,18 @@ export function NewsPageContent() {
 
                     {/* Content */}
                     <div className="flex flex-col flex-1">
-                      <div className="flex items-center gap-4 text-xs font-mono uppercase tracking-widest text-gray-400 mb-3">
+                      <div className="flex items-center gap-4 text-xs font-mono uppercase tracking-widest text-black/80 mb-3">
                         <span className="flex items-center gap-2">
                           <Calendar size={12} />
                           {item.date}
                         </span>
                       </div>
 
-                      <h2 className="text-2xl md:text-3xl font-serif font-light leading-tight mb-4 group-hover:text-gray-600 transition-colors">
+                      <h2 className="text-2xl md:text-3xl font-serif font-light leading-tight mb-4 group-hover:text-black/80 transition-colors">
                         {item.title}
                       </h2>
 
-                      <p className="text-gray-500 font-light leading-relaxed mb-6 line-clamp-3">
+                      <p className="text-black/80 font-light leading-relaxed mb-6 line-clamp-3">
                         {item.description}
                       </p>
 
@@ -116,7 +121,10 @@ export function NewsPageContent() {
                         <span className="text-sm uppercase tracking-widest font-medium group-hover:underline decoration-1 underline-offset-4">
                           Read Article
                         </span>
-                        <ArrowUpRight size={16} className="text-gray-400 group-hover:text-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                        <ArrowUpRight
+                          size={16}
+                          className="text-black/80 group-hover:text-black group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"
+                        />
                       </div>
                     </div>
                   </Link>
@@ -124,7 +132,6 @@ export function NewsPageContent() {
               ))}
             </AnimatePresence>
           </motion.div>
-
         </div>
       </main>
 

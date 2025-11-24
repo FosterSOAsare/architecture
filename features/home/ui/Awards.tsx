@@ -8,9 +8,8 @@ export function Awards() {
   return (
     <section className="py-24 bg-gray-50 text-black">
       <div className="container mx-auto px-6 md:px-12">
-        
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           className="mb-16 md:mb-24 flex flex-col md:flex-row justify-between items-end"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -18,17 +17,18 @@ export function Awards() {
           transition={{ duration: 0.6 }}
         >
           <div>
-            <div className="flex items-center gap-4 mb-4 text-xs font-mono uppercase tracking-widest text-gray-400">
+            <div className="flex items-center gap-4 mb-4 text-xs font-mono uppercase tracking-widest text-gray-500">
               <span>(04)</span>
               <div className="w-12 h-[1px] bg-gray-300"></div>
               <span>Recognition</span>
             </div>
             <h3 className="text-3xl md:text-5xl font-serif font-light">
-              Award <span className="italic text-gray-400">Winning</span>
+              Award <span className="italic text-gray-500">Winning</span>
             </h3>
           </div>
           <div className="hidden md:block text-right max-w-xs text-sm text-gray-500 font-light">
-            Celebrating excellence in design and our commitment to pushing architectural boundaries.
+            Celebrating excellence in design and our commitment to pushing
+            architectural boundaries.
           </div>
         </motion.div>
 
@@ -48,7 +48,7 @@ export function Awards() {
 
               {/* Year & Organization */}
               <div className="flex items-center gap-8 md:w-1/4 mb-4 md:mb-0">
-                <span className="text-sm font-mono text-gray-400 group-hover:text-black transition-colors">
+                <span className="text-sm font-mono text-gray-500 group-hover:text-black transition-colors">
                   {award.year}
                 </span>
                 <span className="text-xs font-medium uppercase tracking-widest text-gray-500 hidden md:block">
@@ -78,7 +78,6 @@ export function Awards() {
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

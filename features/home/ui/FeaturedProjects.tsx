@@ -1,19 +1,28 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useState, useRef } from "react";
 import { FEATURED_PROJECTS } from "../data";
 import { ProjectModal } from "@/components/ui/ProjectModal";
 
-function ProjectCard({ project, index, onClick }: { project: typeof FEATURED_PROJECTS[0], index: number, onClick: (p: any) => void }) {
+function ProjectCard({
+  project,
+  index,
+  onClick,
+}: {
+  project: (typeof FEATURED_PROJECTS)[0];
+  index: number;
+  onClick: (p: any) => void;
+}) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
-  
+
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   return (
@@ -28,15 +37,19 @@ function ProjectCard({ project, index, onClick }: { project: typeof FEATURED_PRO
     >
       <div className="relative overflow-hidden mb-6 aspect-[4/3] md:aspect-[16/10]">
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 z-10" />
-        <motion.div style={{ y }} className="w-full h-[120%] -mt-[10%]">
-          <img
+        <motion.div
+          style={{ y }}
+          className="w-full h-[120%] -mt-[10%] relative"
+        >
+          <Image
             src={project.image}
             alt={project.title}
-            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
         </motion.div>
       </div>
-      
+
       <div className="flex justify-between items-start border-t border-gray-200 pt-4">
         <div>
           <h3 className="text-2xl md:text-3xl font-medium tracking-tight mb-1 group-hover:text-secondary transition-colors">
@@ -47,10 +60,10 @@ function ProjectCard({ project, index, onClick }: { project: typeof FEATURED_PRO
           </p>
         </div>
         <div className="text-right">
-          <span className="block text-xs font-mono text-gray-400 mb-1">
+          <span className="block text-xs font-mono text-gray-500 mb-1">
             {project.category}
           </span>
-          <span className="block text-xs font-mono text-gray-400">
+          <span className="block text-xs font-mono text-gray-500">
             {project.year}
           </span>
         </div>
@@ -60,10 +73,12 @@ function ProjectCard({ project, index, onClick }: { project: typeof FEATURED_PRO
 }
 
 export function FeaturedProjects() {
-  const [selectedProject, setSelectedProject] = useState<typeof FEATURED_PROJECTS[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<
+    (typeof FEATURED_PROJECTS)[0] | null
+  >(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleProjectClick = (project: typeof FEATURED_PROJECTS[0]) => {
+  const handleProjectClick = (project: (typeof FEATURED_PROJECTS)[0]) => {
     setSelectedProject(project);
     setIsModalOpen(true);
   };
@@ -73,7 +88,7 @@ export function FeaturedProjects() {
       <div className="container mx-auto px-6 md:px-12">
         {/* Section Header with Technical Detail */}
         <div className="flex items-end justify-between mb-16 md:mb-24">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -86,16 +101,20 @@ export function FeaturedProjects() {
               <span className="text-gray-500 font-normal">Selected Works</span>
             </div>
             <h2 className="text-4xl md:text-6xl font-serif font-light leading-tight">
-              Featured <span className="italic text-gray-400">Projects</span>
+              Featured <span className="italic text-gray-500">Projects</span>
             </h2>
           </motion.div>
 
           <div className="hidden md:block mb-2">
-            <Link 
-              href="/projects" 
+            <Link
+              href="/projects"
               className="group flex items-center gap-2 text-sm uppercase tracking-widest hover:text-gray-600 transition-colors"
             >
-              View All <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              View All{" "}
+              <ArrowUpRight
+                size={16}
+                className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+              />
             </Link>
           </div>
         </div>
@@ -103,11 +122,11 @@ export function FeaturedProjects() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16 md:gap-y-24">
           {FEATURED_PROJECTS.map((project, index) => (
-            <ProjectCard 
-              key={project.id} 
-              project={project} 
-              index={index} 
-              onClick={handleProjectClick} 
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              onClick={handleProjectClick}
             />
           ))}
         </div>
@@ -123,10 +142,10 @@ export function FeaturedProjects() {
         </div>
       </div>
 
-      <ProjectModal 
-        project={selectedProject} 
-        isOpen={isModalOpen} 
-        onClose={() => setIsModalOpen(false)} 
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
       />
     </section>
   );

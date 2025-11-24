@@ -35,10 +35,10 @@ export function CustomCursor() {
     const handleHoverStart = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       // Check if the hovered element is interactive
-      const isInteractive = 
-        target.tagName === "A" || 
+      const isInteractive =
+        target.tagName === "A" ||
         target.tagName === "BUTTON" ||
-        target.closest("a") || 
+        target.closest("a") ||
         target.closest("button") ||
         target.classList.contains("cursor-pointer");
 
@@ -60,7 +60,9 @@ export function CustomCursor() {
       window.removeEventListener("mouseover", handleHoverStart);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
-      document.body.removeEventListener("mouseleave", () => setIsVisible(false));
+      document.body.removeEventListener("mouseleave", () =>
+        setIsVisible(false)
+      );
       document.body.removeEventListener("mouseenter", () => setIsVisible(true));
     };
   }, [mouseX, mouseY, isVisible]);
@@ -88,6 +90,7 @@ export function CustomCursor() {
           translateY: "-50%",
           opacity: isVisible ? 1 : 0,
         }}
+        aria-hidden="true"
       />
 
       {/* Trailing Ring (Smooth) */}
@@ -102,13 +105,16 @@ export function CustomCursor() {
         }}
         animate={{
           scale: isHovering ? 2.5 : isClicking ? 0.8 : 1,
-          backgroundColor: isHovering ? "rgba(255, 255, 255, 1)" : "rgba(255, 255, 255, 0)",
-          mixBlendMode: "difference"
+          backgroundColor: isHovering
+            ? "rgba(255, 255, 255, 1)"
+            : "rgba(255, 255, 255, 0)",
+          mixBlendMode: "difference",
         }}
         transition={{
           scale: { duration: 0.2 },
-          backgroundColor: { duration: 0.2 }
+          backgroundColor: { duration: 0.2 },
         }}
+        aria-hidden="true"
       />
     </>
   );

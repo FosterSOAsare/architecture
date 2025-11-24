@@ -8,31 +8,32 @@ export function Process() {
   return (
     <section className="py-24 md:py-32 bg-white text-black overflow-hidden">
       <div className="container mx-auto px-6 md:px-12">
-        
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           className="mb-20 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center gap-4 mb-4 text-xs font-mono uppercase tracking-widest text-gray-400">
+          <div className="flex items-center justify-center gap-4 mb-4 text-xs font-mono uppercase tracking-widest text-gray-500">
             <span>(05)</span>
             <div className="w-12 h-[1px] bg-gray-300"></div>
             <span>Methodology</span>
           </div>
           <h3 className="text-3xl md:text-5xl font-serif font-light">
-            Design <span className="italic text-gray-400">Process</span>
+            Design <span className="italic text-gray-500">Process</span>
           </h3>
         </motion.div>
 
         {/* Process Steps - Horizontal Timeline */}
         <div className="relative mt-24">
-          
           {/* Connection Line (Desktop) */}
-          <div className="hidden lg:block absolute top-0 left-0 right-0 h-[1px] border-t border-dashed border-gray-300" style={{ width: 'calc(100% - 120px)', left: '60px' }}>
-            <motion.div 
+          <div
+            className="hidden lg:block absolute top-0 left-0 right-0 h-[1px] border-t border-dashed border-gray-300"
+            style={{ width: "calc(100% - 120px)", left: "60px" }}
+          >
+            <motion.div
               className="h-[1px] bg-black origin-left"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
@@ -73,7 +74,6 @@ export function Process() {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );

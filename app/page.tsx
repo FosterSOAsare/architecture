@@ -12,22 +12,25 @@ import { Footer } from "@/features/home/ui/Footer";
 
 export const metadata: Metadata = {
   title: "REAPER Architecture | Modern Sustainable Design",
-  description: "Award-winning architecture studio based in London and Tokyo. We create timeless, sustainable spaces that elevate the human experience.",
+  description:
+    "Award-winning architecture studio based in London and Tokyo. We create timeless, sustainable spaces that elevate the human experience.",
 };
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <>
       <Navbar transparentOnTop={true} />
-      <Hero />
-      <FeaturedProjects />
-      <StudioPreview />
-      <Testimonials />
-      <Awards />
-      <Process />
-      <LatestNews />
-      <Press />
+      <main className="min-h-screen bg-background text-foreground">
+        <Hero />
+        <FeaturedProjects />
+        <StudioPreview />
+        <Testimonials />
+        <Awards />
+        <Process />
+        <LatestNews />
+        <Press />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

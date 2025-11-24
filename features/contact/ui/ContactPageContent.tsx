@@ -34,7 +34,7 @@ export function ContactPageContent() {
     "New Project Inquiry",
     "Press Inquiry",
     "Career Opportunity",
-    "Other"
+    "Other",
   ];
 
   const onSubmit = async (data: ContactSchema) => {
@@ -49,27 +49,27 @@ export function ContactPageContent() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      
+
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-6 md:px-12">
-          
           {/* Header */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="mb-24"
           >
             <h1 className="text-6xl md:text-8xl font-serif font-light mb-8">
-              Get in <span className="italic text-gray-400">Touch</span>
+              Get in <span className="italic text-gray-500">Touch</span>
             </h1>
             <p className="text-xl md:text-2xl font-light text-gray-600 max-w-2xl leading-relaxed">
-              We are always interested in discussing new projects, collaborations, or simply exchanging ideas about the future of architecture.
+              We are always interested in discussing new projects,
+              collaborations, or simply exchanging ideas about the future of
+              architecture.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-            
             {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -79,10 +79,10 @@ export function ContactPageContent() {
             >
               {/* Offices */}
               <div className="space-y-8">
-                <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400 border-b border-gray-200 pb-4">
+                <h3 className="text-xs font-mono uppercase tracking-widest text-gray-500 border-b border-gray-200 pb-4">
                   Our Studios
                 </h3>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h4 className="text-xl font-medium mb-4">London</h4>
@@ -105,16 +105,28 @@ export function ContactPageContent() {
 
               {/* Direct Contact */}
               <div className="space-y-8">
-                <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400 border-b border-gray-200 pb-4">
+                <h3 className="text-xs font-mono uppercase tracking-widest text-gray-500 border-b border-gray-200 pb-4">
                   Contact Info
                 </h3>
                 <div className="space-y-6">
-                  <a href="mailto:hello@reaper.arch" className="flex items-center gap-4 text-xl hover:text-gray-600 transition-colors group">
-                    <Mail className="text-gray-400 group-hover:text-black transition-colors" size={20} />
+                  <a
+                    href="mailto:hello@reaper.arch"
+                    className="flex items-center gap-4 text-xl hover:text-gray-600 transition-colors group"
+                  >
+                    <Mail
+                      className="text-gray-500 group-hover:text-black transition-colors"
+                      size={20}
+                    />
                     hello@reaper.arch
                   </a>
-                  <a href="tel:+442012345678" className="flex items-center gap-4 text-xl hover:text-gray-600 transition-colors group">
-                    <Phone className="text-gray-400 group-hover:text-black transition-colors" size={20} />
+                  <a
+                    href="tel:+442012345678"
+                    className="flex items-center gap-4 text-xl hover:text-gray-600 transition-colors group"
+                  >
+                    <Phone
+                      className="text-gray-500 group-hover:text-black transition-colors"
+                      size={20}
+                    />
                     +44 (0) 20 1234 5678
                   </a>
                 </div>
@@ -122,14 +134,14 @@ export function ContactPageContent() {
 
               {/* Socials */}
               <div className="space-y-8">
-                <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400 border-b border-gray-200 pb-4">
+                <h3 className="text-xs font-mono uppercase tracking-widest text-gray-500 border-b border-gray-200 pb-4">
                   Follow Us
                 </h3>
                 <div className="flex gap-8">
-                  {['Facebook', 'LinkedIn', 'Twitter'].map((social) => (
-                    <a 
-                      key={social} 
-                      href="#" 
+                  {["Facebook", "LinkedIn", "Twitter"].map((social) => (
+                    <a
+                      key={social}
+                      href="#"
                       className="text-lg hover:text-gray-600 transition-colors relative group"
                     >
                       {social}
@@ -150,36 +162,63 @@ export function ContactPageContent() {
               <h3 className="text-2xl font-serif mb-8">Send us a message</h3>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                 <div className="space-y-1">
-                  <label htmlFor="name" className="text-xs font-mono uppercase tracking-widest text-gray-500">Name</label>
-                  <input 
+                  <label
+                    htmlFor="name"
+                    className="text-xs font-mono uppercase tracking-widest text-gray-500"
+                  >
+                    Name
+                  </label>
+                  <input
                     {...register("name")}
-                    type="text" 
+                    type="text"
                     id="name"
                     className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors text-lg ${
-                      errors.name ? "border-red-500" : "border-gray-300 focus:border-black"
+                      errors.name
+                        ? "border-red-500"
+                        : "border-gray-300 focus:border-black"
                     }`}
                     placeholder="John Doe"
                   />
-                  {errors.name && <p className="text-red-500 text-xs">{errors.name.message}</p>}
+                  {errors.name && (
+                    <p className="text-red-500 text-xs">
+                      {errors.name.message}
+                    </p>
+                  )}
                 </div>
-                
+
                 <div className="space-y-1">
-                  <label htmlFor="email" className="text-xs font-mono uppercase tracking-widest text-gray-500">Email</label>
-                  <input 
+                  <label
+                    htmlFor="email"
+                    className="text-xs font-mono uppercase tracking-widest text-gray-500"
+                  >
+                    Email
+                  </label>
+                  <input
                     {...register("email")}
-                    type="email" 
+                    type="email"
                     id="email"
                     className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors text-lg ${
-                      errors.email ? "border-red-500" : "border-gray-300 focus:border-black"
+                      errors.email
+                        ? "border-red-500"
+                        : "border-gray-300 focus:border-black"
                     }`}
                     placeholder="john@example.com"
                   />
-                  {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
+                  {errors.email && (
+                    <p className="text-red-500 text-xs">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-1 relative">
-                  <label htmlFor="subject" className="text-xs font-mono uppercase tracking-widest text-gray-500">Subject</label>
-                  
+                  <label
+                    htmlFor="subject"
+                    className="text-xs font-mono uppercase tracking-widest text-gray-500"
+                  >
+                    Subject
+                  </label>
+
                   {/* Custom Select Trigger */}
                   <button
                     type="button"
@@ -187,9 +226,11 @@ export function ContactPageContent() {
                     className="w-full bg-transparent border-b border-gray-300 py-3 flex items-center justify-between group focus:outline-none focus:border-black transition-colors text-lg text-left"
                   >
                     <span className="text-black">{subject}</span>
-                    <ChevronDown 
-                      size={16} 
-                      className={`text-gray-400 transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`} 
+                    <ChevronDown
+                      size={16}
+                      className={`text-gray-500 transition-transform duration-300 ${
+                        isDropdownOpen ? "rotate-180" : ""
+                      }`}
                     />
                   </button>
 
@@ -212,7 +253,9 @@ export function ContactPageContent() {
                               setIsDropdownOpen(false);
                             }}
                             className={`w-full text-left px-6 py-3 text-sm hover:bg-gray-50 transition-colors ${
-                              subject === option ? "text-black font-medium bg-gray-50" : "text-gray-600"
+                              subject === option
+                                ? "text-black font-medium bg-gray-50"
+                                : "text-gray-600"
                             }`}
                           >
                             {option}
@@ -221,40 +264,61 @@ export function ContactPageContent() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                  
+
                   <input type="hidden" {...register("subject")} />
-                  {errors.subject && <p className="text-red-500 text-xs">{errors.subject.message}</p>}
+                  {errors.subject && (
+                    <p className="text-red-500 text-xs">
+                      {errors.subject.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-1">
-                  <label htmlFor="message" className="text-xs font-mono uppercase tracking-widest text-gray-500">Message</label>
-                  <textarea 
+                  <label
+                    htmlFor="message"
+                    className="text-xs font-mono uppercase tracking-widest text-gray-500"
+                  >
+                    Message
+                  </label>
+                  <textarea
                     {...register("message")}
                     id="message"
                     rows={4}
                     className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors text-lg resize-none ${
-                      errors.message ? "border-red-500" : "border-gray-300 focus:border-black"
+                      errors.message
+                        ? "border-red-500"
+                        : "border-gray-300 focus:border-black"
                     }`}
                     placeholder="Tell us about your project..."
                   />
-                  {errors.message && <p className="text-red-500 text-xs">{errors.message.message}</p>}
+                  {errors.message && (
+                    <p className="text-red-500 text-xs">
+                      {errors.message.message}
+                    </p>
+                  )}
                 </div>
 
-                <button 
+                <button
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full bg-black text-white py-4 px-8 flex items-center justify-center gap-3 hover:bg-gray-900 transition-colors group disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                   <span className="uppercase tracking-widest text-sm">
-                    {isSubmitting ? "Sending..." : isSubmitSuccessful ? "Message Sent" : "Send Message"}
+                    {isSubmitting
+                      ? "Sending..."
+                      : isSubmitSuccessful
+                      ? "Message Sent"
+                      : "Send Message"}
                   </span>
                   {!isSubmitting && !isSubmitSuccessful && (
-                    <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <ArrowUpRight
+                      size={16}
+                      className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                    />
                   )}
                 </button>
               </form>
             </motion.div>
-
           </div>
         </div>
       </main>
