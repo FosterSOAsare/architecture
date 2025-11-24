@@ -20,8 +20,34 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "REAPER | Architecture & Design",
   description: "A multidisciplinary architecture and design studio based in London and Tokyo.",
+  metadataBase: new URL("https://architecture-iota-lac.vercel.app/"),
+  openGraph: {
+    title: "REAPER | Architecture & Design",
+    description: "A multidisciplinary architecture and design studio based in London and Tokyo.",
+    url: "https://architecture-iota-lac.vercel.app",
+    siteName: "REAPER",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "REAPER | Architecture & Design",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "REAPER | Architecture & Design",
+    description: "A multidisciplinary architecture and design studio based in London and Tokyo.",
+    images: ["/logo.png"],
+  },
   icons: {
-    icon: "/logo.png",
+    icon: [
+      { url: "/favicon-black.ico", media: "(prefers-color-scheme: light)" },
+      { url: "/favicon-white.ico", media: "(prefers-color-scheme: dark)" },
+    ],
   },
 };
 

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Share2 } from "lucide-react";
 import Link from "next/link";
+import { toast } from "react-toastify";
 import { Navbar } from "@/features/layout/ui/Navbar";
 import { Footer } from "@/features/home/ui/Footer";
 
@@ -90,7 +91,14 @@ export function SingleNewsPageContent({ newsItem }: SingleNewsPageContentProps) 
               <div>
                 <h3 className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-4">Share</h3>
                 <div className="flex gap-4">
-                  <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-colors">
+                  <button 
+                    onClick={() => {
+                      navigator.clipboard.writeText(window.location.href);
+                      toast.success("Link copied to clipboard");
+                    }}
+                    className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white hover:border-black transition-colors"
+                    aria-label="Copy link"
+                  >
                     <Share2 size={16} />
                   </button>
                   {/* Add more social icons if needed */}
