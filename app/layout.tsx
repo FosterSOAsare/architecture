@@ -6,7 +6,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { CustomCursor } from "@/features/layout/ui/CustomCursor";
-import { AxeAccessibility } from "@/components/AxeAccessibility";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,7 +65,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <AxeAccessibility />
         <CustomCursor />
         <ToastContainer position="bottom-right" theme="dark" />
         {children}
