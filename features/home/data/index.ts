@@ -1,24 +1,27 @@
 export const HERO_SLIDES = [
   {
     id: 1,
+    projectId: 8,
     image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2700&auto=format&fit=crop",
-    title: "Modernist Retreat",
+    title: "Alpine Chapel",
     location: "Swiss Alps",
-    year: "2024",
+    year: "2021",
   },
   {
     id: 2,
+    projectId: 2,
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2700&auto=format&fit=crop",
-    title: "Urban Void",
-    location: "Tokyo, Japan",
+    title: "Brutalist Villa",
+    location: "Kyoto, Japan",
     year: "2023",
   },
   {
     id: 3,
+    projectId: 9,
     image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2700&auto=format&fit=crop",
-    title: "Concrete House",
-    location: "Mexico City",
-    year: "2023",
+    title: "Cliffside Residence",
+    location: "Cape Town",
+    year: "2024",
   },
 ];
 
@@ -105,26 +108,26 @@ export const TESTIMONIALS = [
   {
     id: 1,
     quote: "Working with REAPER was transformative. They didn't just design a building—they created a living, breathing space that has fundamentally changed how our community interacts.",
-    author: "Sarah Chen",
-    role: "Director, Copenhagen Art Foundation",
+    author: "Amara Okafor",
+    role: "Director, Lagos Art Foundation",
     project: "The Glass Pavilion",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2574&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=2574&auto=format&fit=crop",
   },
   {
     id: 2,
-    quote: "Their attention to detail and understanding of Japanese spatial philosophy resulted in a home that feels both contemporary and timeless. Every corner tells a story.",
-    author: "Takeshi Yamamoto",
+    quote: "Their attention to detail and understanding of spatial philosophy resulted in a home that feels both contemporary and timeless. Every corner tells a story.",
+    author: "Marcus Thorne",
     role: "Homeowner",
     project: "Brutalist Villa",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=2574&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2574&auto=format&fit=crop",
   },
   {
     id: 3,
     quote: "REAPER's ability to balance aesthetic ambition with practical constraints is unmatched. They delivered a retail space that has become a destination in itself.",
-    author: "Min-jun Park",
-    role: "CEO, Aesop Korea",
+    author: "Zola Mbeki",
+    role: "Global Retail Director, Aesop",
     project: "Aesop Store Seoul",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2574&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?q=80&w=2574&auto=format&fit=crop",
   },
 ];
 
@@ -134,28 +137,28 @@ export const AWARDS = [
     title: "RIBA International Prize",
     year: "2024",
     project: "The Glass Pavilion",
-    organization:"Test Org"
+    organization: "R.A of British Architects"
   },
   {
     id: 2,
     title: "Architizer A+ Award",
     year: "2023",
     project: "Brutalist Villa",
-    organization:"Test Org"
+    organization: "Architizer"
   },
   {
     id: 3,
     title: "World Architecture Festival",
     year: "2023",
     project: "Nordic Maritime Museum",
-    organization:"Test Org"
+    organization: "World Architecture Festival"
   },
   {
     id: 4,
     title: "Dezeen Awards",
     year: "2022",
     project: "Aesop Store Seoul",
-    organization:"Test Org"
+    organization: "Dezeen"
   },
 ];
 

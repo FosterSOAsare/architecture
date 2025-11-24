@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { CustomCursor } from "@/features/layout/ui/CustomCursor";
 
 const geistSans = Geist({
@@ -17,6 +20,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "REAPER | Architecture & Design",
   description: "A multidisciplinary architecture and design studio based in London and Tokyo.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -28,8 +34,10 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
         <CustomCursor />
+        <ToastContainer position="bottom-right" theme="dark" />
         {children}
       </body>
     </html>

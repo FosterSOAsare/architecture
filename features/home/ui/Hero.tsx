@@ -5,10 +5,11 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight, Plus } from "lucide-react";
-
+import { useRouter } from "next/navigation";
 import { HERO_SLIDES } from "../data";
 
 export function Hero() {
+  const router = useRouter();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 60 }, [
     Autoplay({ delay: 6000, stopOnInteraction: false, stopOnMouseEnter: true }),
   ]);
@@ -82,7 +83,10 @@ export function Hero() {
                   <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-medium tracking-tight text-white mb-8 leading-[0.9]">
                     {slide.title}
                   </h1>
-                  <button className="group flex items-center gap-3 text-sm md:text-base tracking-widest uppercase border-b border-white/30 pb-2 hover:border-white transition-colors">
+                  <button 
+                    onClick={() => router.push(`/projects/${slide.projectId}`)}
+                    className="group flex items-center gap-3 text-sm md:text-base tracking-widest uppercase border-b border-white/30 pb-2 hover:border-white transition-colors"
+                  >
                     View Project
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>

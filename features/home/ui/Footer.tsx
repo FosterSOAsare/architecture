@@ -3,7 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Instagram, Linkedin, Twitter } from "lucide-react";
+import { ArrowUpRight, Facebook, Linkedin, Twitter } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { newsletterSchema, type NewsletterSchema } from "../schemas/newsletter";
+import { toast } from "react-toastify";
 
 export function Footer() {
   const pathname = usePathname();
@@ -115,19 +119,7 @@ export function Footer() {
             <p className="text-sm text-gray-400 mb-6 leading-relaxed">
               Subscribe to receive updates on our latest projects and news.
             </p>
-            <form className="space-y-4">
-              <input 
-                type="email" 
-                placeholder="Your email" 
-                className="w-full bg-white/5 border border-white/10 px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:border-white/30 transition-colors"
-              />
-              <button 
-                type="button" 
-                className="w-full bg-white text-black px-4 py-3 text-xs uppercase tracking-widest hover:bg-gray-200 transition-colors"
-              >
-                Subscribe
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </motion.div>
 
@@ -161,12 +153,12 @@ export function Footer() {
           {/* Social Icons */}
           <div className="flex gap-4">
             <a 
-              href="https://instagram.com" 
+              href="https://facebook.com" 
               target="_blank" 
               rel="noopener noreferrer"
               className="p-2 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all duration-300"
             >
-              <Instagram size={16} />
+              <Facebook size={16} />
             </a>
             <a 
               href="https://linkedin.com" 
@@ -185,10 +177,55 @@ export function Footer() {
               <Twitter size={16} />
             </a>
           </div>
-
         </div>
 
       </div>
     </footer>
+  );
+}
+
+function NewsletterForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+    reset,
+  } = useForm<NewsletterSchema>({
+    resolver: zodResolver(newsletterSchema),
+  });
+
+  const onSubmit = async (data: NewsletterSchema) => {
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log("Newsletter subscription:", data);
+    toast.success("Subscribed to newsletter!");
+    reset();
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <div>
+        <input 
+          {...register("email")}
+          type="email" 
+          placeholder="Your email" 
+          className={`w-full bg-white/5 border px-4 py-3 text-sm text-white placeholder:text-gray-500 focus:outline-none transition-colors ${
+            errors.email 
+              ? "border-red-500 focus:border-red-500" 
+              : "border-white/10 focus:border-white/30"
+          }`}
+        />
+        {errors.email && (
+          <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+        )}
+      </div>
+      <button 
+        type="submit" 
+        disabled={isSubmitting}
+        className="w-full bg-white text-black px-4 py-3 text-xs uppercase tracking-widest hover:bg-gray-200 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+      >
+        {isSubmitting ? "Subscribing..." : isSubmitSuccessful ? "Subscribed!" : "Subscribe"}
+      </button>
+    </form>
   );
 }

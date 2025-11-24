@@ -54,51 +54,53 @@ export function LatestNews() {
                 index === 0 ? "md:col-span-2 md:row-span-2" : "md:col-span-1"
               }`}
             >
-              {/* Image */}
-              <div className={`overflow-hidden mb-6 bg-gray-100 border border-gray-200 ${
-                index === 0 ? "aspect-[3/2]" : "aspect-[4/3]"
-              }`}>
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-
-              {/* Content */}
-              <div className="flex flex-col gap-4 flex-1">
-                {/* Meta */}
-                <div className="flex justify-between items-center text-xs font-mono uppercase tracking-widest border-b border-gray-100 pb-3">
-                  <span className="text-secondary font-medium">
-                    {item.category}
-                  </span>
-                  <span className="text-gray-400">{item.date}</span>
-                </div>
-
-                {/* Title */}
-                <h4 className={`font-medium leading-tight group-hover:text-secondary transition-colors ${
-                  index === 0 ? "text-3xl md:text-4xl font-serif" : "text-xl md:text-2xl"
+              <Link href={`/news/${item.id}`} className="flex flex-col h-full">
+                {/* Image */}
+                <div className={`overflow-hidden mb-6 bg-gray-100 border border-gray-200 ${
+                  index === 0 ? "aspect-[3/2]" : "aspect-[4/3]"
                 }`}>
-                  {item.title}
-                </h4>
-
-                {/* Description (Only for featured item if available, or generic text) */}
-                {index === 0 && (
-                  <div className="text-gray-500 text-base leading-relaxed mt-4 space-y-4">
-                    <p>
-                      We are thrilled to announce that our studio has been recognized for its commitment to sustainable innovation and community-driven design. This award reflects our ongoing dedication to creating spaces that not only serve their function but also enhance the well-being of those who inhabit them.
-                    </p>
-                    <p>
-                      It is a testament to the hard work of our entire team and our visionary clients who dare to dream big. As we look to the future, we remain focused on pushing the boundaries of what is possible in modern architecture, ensuring every project leaves a lasting positive impact on the built environment.
-                    </p>
-                  </div>
-                )}
-
-                {/* Read More Link */}
-                <div className="mt-auto pt-4 flex items-center gap-2 text-sm font-medium text-gray-900 group-hover:text-secondary transition-colors">
-                  Read Article <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                 </div>
-              </div>
+
+                {/* Content */}
+                <div className="flex flex-col gap-4 flex-1">
+                  {/* Meta */}
+                  <div className="flex justify-between items-center text-xs font-mono uppercase tracking-widest border-b border-gray-100 pb-3">
+                    <span className="text-secondary font-medium">
+                      {item.category}
+                    </span>
+                    <span className="text-gray-400">{item.date}</span>
+                  </div>
+
+                  {/* Title */}
+                  <h4 className={`font-medium leading-tight group-hover:text-secondary transition-colors ${
+                    index === 0 ? "text-3xl md:text-4xl font-serif" : "text-xl md:text-2xl"
+                  }`}>
+                    {item.title}
+                  </h4>
+
+                  {/* Description (Only for featured item if available, or generic text) */}
+                  {index === 0 && (
+                    <div className="text-gray-500 text-base leading-relaxed mt-4 space-y-4">
+                      <p>
+                        We are thrilled to announce that our studio has been recognized for its commitment to sustainable innovation and community-driven design. This award reflects our ongoing dedication to creating spaces that not only serve their function but also enhance the well-being of those who inhabit them.
+                      </p>
+                      <p>
+                        It is a testament to the hard work of our entire team and our visionary clients who dare to dream big. As we look to the future, we remain focused on pushing the boundaries of what is possible in modern architecture, ensuring every project leaves a lasting positive impact on the built environment.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Read More Link */}
+                  <div className="mt-auto pt-4 flex items-center gap-2 text-sm font-medium text-gray-900 group-hover:text-secondary transition-colors">
+                    Read Article <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
+                </div>
+              </Link>
             </motion.article>
           ))}
         </div>

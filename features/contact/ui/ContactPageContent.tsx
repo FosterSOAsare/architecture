@@ -5,10 +5,30 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Mail, MapPin, Phone, ChevronDown } from "lucide-react";
 import { Navbar } from "@/features/layout/ui/Navbar";
 import { Footer } from "@/features/home/ui/Footer";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { contactSchema, type ContactSchema } from "../schemas/contact";
+
+import { toast } from "react-toastify";
 
 export function ContactPageContent() {
-  const [subject, setSubject] = useState("New Project Inquiry");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+    reset,
+  } = useForm<ContactSchema>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      subject: "New Project Inquiry",
+    },
+  });
+
+  const subject = watch("subject");
 
   const options = [
     "New Project Inquiry",
@@ -16,6 +36,15 @@ export function ContactPageContent() {
     "Career Opportunity",
     "Other"
   ];
+
+  const onSubmit = async (data: ContactSchema) => {
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    console.log("Contact form submission:", data);
+    toast.success("Message sent successfully!");
+    reset();
+    setValue("subject", "New Project Inquiry");
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -97,7 +126,7 @@ export function ContactPageContent() {
                   Follow Us
                 </h3>
                 <div className="flex gap-8">
-                  {['Instagram', 'LinkedIn', 'Twitter'].map((social) => (
+                  {['Facebook', 'LinkedIn', 'Twitter'].map((social) => (
                     <a 
                       key={social} 
                       href="#" 
@@ -119,25 +148,33 @@ export function ContactPageContent() {
               className="bg-gray-50 p-8 md:p-12"
             >
               <h3 className="text-2xl font-serif mb-8">Send us a message</h3>
-              <form className="space-y-8">
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                 <div className="space-y-1">
                   <label htmlFor="name" className="text-xs font-mono uppercase tracking-widest text-gray-500">Name</label>
                   <input 
+                    {...register("name")}
                     type="text" 
                     id="name"
-                    className="w-full bg-transparent border-b border-gray-300 py-3 focus:outline-none focus:border-black transition-colors text-lg"
+                    className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors text-lg ${
+                      errors.name ? "border-red-500" : "border-gray-300 focus:border-black"
+                    }`}
                     placeholder="John Doe"
                   />
+                  {errors.name && <p className="text-red-500 text-xs">{errors.name.message}</p>}
                 </div>
                 
                 <div className="space-y-1">
                   <label htmlFor="email" className="text-xs font-mono uppercase tracking-widest text-gray-500">Email</label>
                   <input 
+                    {...register("email")}
                     type="email" 
                     id="email"
-                    className="w-full bg-transparent border-b border-gray-300 py-3 focus:outline-none focus:border-black transition-colors text-lg"
+                    className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors text-lg ${
+                      errors.email ? "border-red-500" : "border-gray-300 focus:border-black"
+                    }`}
                     placeholder="john@example.com"
                   />
+                  {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
                 </div>
 
                 <div className="space-y-1 relative">
@@ -171,7 +208,7 @@ export function ContactPageContent() {
                             key={option}
                             type="button"
                             onClick={() => {
-                              setSubject(option);
+                              setValue("subject", option);
                               setIsDropdownOpen(false);
                             }}
                             className={`w-full text-left px-6 py-3 text-sm hover:bg-gray-50 transition-colors ${
@@ -185,26 +222,35 @@ export function ContactPageContent() {
                     )}
                   </AnimatePresence>
                   
-                  {/* Hidden input for form submission if needed */}
-                  <input type="hidden" name="subject" value={subject} />
+                  <input type="hidden" {...register("subject")} />
+                  {errors.subject && <p className="text-red-500 text-xs">{errors.subject.message}</p>}
                 </div>
 
                 <div className="space-y-1">
                   <label htmlFor="message" className="text-xs font-mono uppercase tracking-widest text-gray-500">Message</label>
                   <textarea 
+                    {...register("message")}
                     id="message"
                     rows={4}
-                    className="w-full bg-transparent border-b border-gray-300 py-3 focus:outline-none focus:border-black transition-colors text-lg resize-none"
+                    className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors text-lg resize-none ${
+                      errors.message ? "border-red-500" : "border-gray-300 focus:border-black"
+                    }`}
                     placeholder="Tell us about your project..."
                   />
+                  {errors.message && <p className="text-red-500 text-xs">{errors.message.message}</p>}
                 </div>
 
                 <button 
                   type="submit"
-                  className="w-full bg-black text-white py-4 px-8 flex items-center justify-center gap-3 hover:bg-gray-900 transition-colors group"
+                  disabled={isSubmitting}
+                  className="w-full bg-black text-white py-4 px-8 flex items-center justify-center gap-3 hover:bg-gray-900 transition-colors group disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                  <span className="uppercase tracking-widest text-sm">Send Message</span>
-                  <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <span className="uppercase tracking-widest text-sm">
+                    {isSubmitting ? "Sending..." : isSubmitSuccessful ? "Message Sent" : "Send Message"}
+                  </span>
+                  {!isSubmitting && !isSubmitSuccessful && (
+                    <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  )}
                 </button>
               </form>
             </motion.div>
