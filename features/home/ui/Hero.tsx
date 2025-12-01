@@ -10,7 +10,7 @@ import { HERO_SLIDES } from "../data";
 
 export function Hero() {
   const router = useRouter();
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 60 }, [
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 30 }, [
     Autoplay({ delay: 6000, stopOnInteraction: false, stopOnMouseEnter: true }),
   ]);
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -39,7 +39,7 @@ export function Hero() {
   );
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black text-white">
+    <section className="relative h-[100dvh] w-full overflow-hidden bg-black text-white">
       {/* Technical Corner Markers (Tiny Elements) */}
       <div
         className="absolute top-8 left-8 md:top-12 md:left-12 z-20 text-white/50 pointer-events-none"
