@@ -110,24 +110,24 @@ export function ContactPageContent() {
                 </h3>
                 <div className="space-y-6">
                   <a
-                    href="mailto:hello@reaper.arch"
+                    href="mailto:fostersoasare@gmail.com"
                     className="flex items-center gap-4 text-xl hover:text-gray-600 transition-colors group"
                   >
                     <Mail
                       className="text-gray-500 group-hover:text-black transition-colors"
                       size={20}
                     />
-                    hello@reaper.arch
+                    fostersoasare@gmail.com
                   </a>
                   <a
-                    href="tel:+442012345678"
+                    href="tel:+33780885945"
                     className="flex items-center gap-4 text-xl hover:text-gray-600 transition-colors group"
                   >
                     <Phone
                       className="text-gray-500 group-hover:text-black transition-colors"
                       size={20}
                     />
-                    +44 (0) 20 1234 5678
+                    +33 7 80 88 59 45
                   </a>
                 </div>
               </div>

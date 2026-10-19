@@ -134,10 +134,10 @@ export function Footer() {
               <div>Tokyo, Japan</div>
               <div className="pt-4">
                 <a
-                  href="mailto:hello@architecture.studio"
+                  href="mailto:fostersoasare@gmail.com"
                   className="hover:text-white transition-colors"
                 >
-                  hello@architecture.studio
+                  fostersoasare@gmail.com
                 </a>
               </div>
             </div>
